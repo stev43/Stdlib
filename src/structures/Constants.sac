@@ -86,6 +86,22 @@ external long     maxlong();
     #pragma linksign[0]
     #pragma linkobj "src/Constants/minmax.o"
 
+external float8  minfloat8();
+    #pragma linksign[0]
+    #pragma linkobj "src/Constants/minfloat8.o"
+
+external float8  maxfloat8();
+    #pragma linksign[0]
+    #pragma linkobj "src/Constants/maxfloat8.o"
+
+external float16 minfloat16();
+    #pragma linksign[0]
+    #pragma linkobj "src/Constants/minfloat16.o"
+
+external float16 maxfloat16();
+    #pragma linksign[0]
+    #pragma linkobj "src/Constants/maxfloat16.o"
+
 external float   minfloat();
     #pragma linksign[0]
     #pragma linkobj "src/Constants/minfloat.o"

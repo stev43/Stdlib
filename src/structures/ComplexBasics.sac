@@ -34,6 +34,18 @@ inline  complex toc(int    REAL, int    IMAG)
 }
 
 
+inline  complex toc(float8  REAL, float8  IMAG)
+{
+  return((complex)[ScalarArith::tod(REAL), ScalarArith::tod(IMAG)]);
+}
+
+
+inline  complex toc(float16  REAL, float16  IMAG)
+{
+  return((complex)[ScalarArith::tod(REAL), ScalarArith::tod(IMAG)]);
+}
+
+
 inline  complex toc(float  REAL, float  IMAG)
 {
   return((complex)[ScalarArith::tod(REAL), ScalarArith::tod(IMAG)]);
@@ -54,6 +66,18 @@ inline complex toc(double[2] COMP)
 
 
 inline  complex toc(int    REAL)
+{
+  return((complex)[ScalarArith::tod(REAL), 0.0d]);
+}
+
+
+inline  complex toc(float8  REAL)
+{
+  return((complex)[ScalarArith::tod(REAL), 0.0d]);
+}
+
+
+inline  complex toc(float16  REAL)
 {
   return((complex)[ScalarArith::tod(REAL), 0.0d]);
 }
