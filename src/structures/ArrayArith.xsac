@@ -39,7 +39,7 @@ export all;
 
 #define MAP_BIN_AxA( name, op, a, b)                                               \
 inline                                                                             \
-b[+] name( a[+] A, a[+] B)                                                       \
+b[+] name( a[+] A, a[+] B)                                                         \
 {                                                                                  \
   shp = _shape_A_( B);                                                             \
                                                                                    \
@@ -51,7 +51,7 @@ b[+] name( a[+] A, a[+] B)                                                      
 
 #define MAP_BIN_AxA_MIN( name, op, a, b)                                           \
 inline                                                                             \
-b[+] name( a[+] A, a[+] B)                                                       \
+b[+] name( a[+] A, a[+] B)                                                         \
 {                                                                                  \
   fshp = shpmin( _shape_A_( A), _shape_A_(B));                                     \
   cshp = shprem( _shape_A_( A), _shape_A_(B));                                     \
@@ -66,7 +66,7 @@ b[+] name( a[+] A, a[+] B)                                                      
 
 #define MAP_BIN_AxS( name, op, a, b)                                  \
 inline                                                                \
-b[+] name( a[+] A, a B)                                             \
+b[+] name( a[+] A, a B)                                               \
 {                                                                     \
   shp = _shape_A_( A);                                                \
   res = with {                                                        \
@@ -77,7 +77,7 @@ b[+] name( a[+] A, a B)                                             \
 
 #define MAP_BIN_SxA( name, op, a, b)                                  \
 inline                                                                \
-b[+] name( a A, a[+] B)                                             \
+b[+] name( a A, a[+] B)                                               \
 {                                                                     \
   shp = _shape_A_( B);                                                \
   res = with {                                                        \
@@ -118,7 +118,7 @@ int[.] (name)( int[.] A, int    B)                 \
 
 #define MAP_MON_AxA( name, op, a, b)                       \
 inline                                                     \
-b[+] name( a[+] A)                                       \
+b[+] name( a[+] A)                                         \
 {                                                          \
   shp = _shape_A_( A);                                     \
   res = with {                                             \

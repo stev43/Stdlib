@@ -313,10 +313,19 @@ external double hypot(double X, double Y);
 
   /* Trigonometric functions.  */
 
-
   inline float cos(float X)
   {
     return(tof(cos(tod(X))));
+  }
+
+  inline float8 cos(float8 X)
+  {
+    return(tof8(cos(tof(X))));
+  }
+
+  inline float16 cos(float16 X)
+  {
+    return(tof16(cos(tof(X))));
   }
     /* Cosine of X.  */
 
@@ -324,11 +333,33 @@ external double hypot(double X, double Y);
   {
     return(tof(sin(tod(X))));
   }
+
+  inline float8 sin(float8 X)
+  {
+    return(tof8(sin(tof(X))));
+  }
+
+  inline float16 sin(float16 X)
+  {
+    return(tof16(sin(tof(X))));
+  }
     /* Sine of X.  */
 
   inline float, float sincos(float x)
   {
     return(sin(x), cos(x));
+  }
+
+  inline float8, float8 sincos(float8 x)
+  {
+    a,b = sincos(tof(x));
+    return(tof8(a), tof8(b));
+  }
+
+  inline float16, float16 sincos(float16 x)
+  {
+    a,b = sincos(tof(x));
+    return(tof16(a), tof16(b));
   }
 
   inline double, double sincos(double x)
@@ -340,11 +371,31 @@ external double hypot(double X, double Y);
   {
     return(tof(tan(tod(X))));
   }
+
+  inline float8 tan(float8 X)
+  {
+    return(tof8(tan(tof(X))));
+  }
+
+  inline float16 tan(float16 X)
+  {
+    return(tof16(tan(tof(X))));
+  }
     /* Tangent of X.  */
 
   inline float acos(float X)
   {
     return(tof(acos(tod(X))));
+  }
+
+  inline float8 acos(float8 X)
+  {
+    return(tof8(acos(tof(X))));
+  }
+
+  inline float16 acos(float16 X)
+  {
+    return(tof16(acos(tof(X))));
   }
     /* Arc cosine of X.  */
 
@@ -352,17 +403,47 @@ external double hypot(double X, double Y);
   {
     return(tof(asin(tod(X))));
   }
+
+  inline float8 asin(float8 X)
+  {
+    return(tof8(asin(tof(X))));
+  }
+
+  inline float16 asin(float16 X)
+  {
+    return(tof16(asin(tof(X))));
+  }
     /* Arc sine of X.  */
 
   inline float atan(float X)
   {
     return(tof(atan(tod(X))));
   }
+
+  inline float8 atan(float8 X)
+  {
+    return(tof8(atan(tof(X))));
+  }
+
+  inline float16 atan(float16 X)
+  {
+    return(tof16(atan(tof(X))));
+  }
     /* Arc tangent of X.  */
     
   inline float atan2(float X, float Y)
   {
     return(tof(atan2(tod(X), tod(Y))));
+  }
+
+  inline float8 atan2(float8 X, float8 Y)
+  {
+    return(tof8(atan2(tof(X), tof(Y))));
+  }
+
+  inline float16 atan2(float16 X, float16 Y)
+  {
+    return(tof16(atan2(tof(X), tof(Y))));
   }
     /* Arc tangent of Y/X.  */
 
@@ -375,11 +456,31 @@ external double hypot(double X, double Y);
   {
     return(tof(cosh(tod(X))));
   }
+
+  inline float8 cosh(float8 X)
+  {
+    return(tof8(cosh(tof(X))));
+  }
+
+  inline float16 cosh(float16 X)
+  {
+    return(tof16(cosh(tof(X))));
+  }
     /* Hyperbolic cosine of X.  */
 
   inline float sinh(float X)
   {
     return(tof(sinh(tod(X))));
+  }
+
+  inline float8 sinh(float8 X)
+  {
+    return(tof8(sinh(tof(X))));
+  }
+  
+  inline float16 sinh(float16 X)
+  {
+    return(tof16(sinh(tof(X))));
   }
     /* Hyperbolic sine of X.  */
 
@@ -387,11 +488,31 @@ external double hypot(double X, double Y);
   {
     return(tof(tanh(tod(X))));
   }
+
+  inline float8 tanh(float8 X)
+  {
+    return(tof8(tanh(tof(X))));
+  }
+
+  inline float16 tanh(float16 X)
+  {
+    return(tof16(tanh(tof(X))));
+  }
     /* Hyperbolic tangent of X.  */
 
   inline float acosh(float X)
   {
     return(tof(acosh(tod(X))));
+  }
+
+  inline float8 acosh(float8 X)
+  {
+    return(tof8(acosh(tof(X))));
+  }
+
+  inline float16 acosh(float16 X)
+  {
+    return(tof16(acosh(tof(X))));
   }
     /* Hyperbolic arc cosine of X.  */
 
@@ -399,11 +520,31 @@ external double hypot(double X, double Y);
   {
     return(tof(asinh(tod(X))));
   }
+
+  inline float8 asinh(float8 X)
+  {
+    return(tof8(asinh(tof(X))));
+  }
+
+  inline float16 asinh(float16 X)
+  {
+    return(tof16(asinh(tof(X))));
+  }
     /* Hyperbolic arc sine of X.  */
 
   inline float atanh(float X)
   {
     return(tof(atanh(tod(X))));
+  }
+
+  inline float8 atanh(float8 X)
+  {
+    return(tof8(atanh(tof(X))));
+  }
+
+  inline float16 atanh(float16 X)
+  {
+    return(tof16(atanh(tof(X))));
   }
     /* Hyperbolic arc tangent of X.  */
     
@@ -411,10 +552,19 @@ external double hypot(double X, double Y);
 
   /* Exponential and logarithmic functions.  */
 
-
   inline float exp(float X)
   {
     return(expf(X));
+  }
+
+  inline float8 exp(float8 X)
+  {
+    return(tof8(exp(tof(X))));
+  }
+
+  inline float16 exp(float16 X)
+  {
+    return(tof16(exp(tof(X))));
   }
     /* Exponentional function of X.  */
 
@@ -424,11 +574,35 @@ external double hypot(double X, double Y);
 
     return(tof(a), b);
   }
+
+  inline float8, int frexp(float8 X)
+  {
+    a, b=frexp(tof(X));
+
+    return(tof8(a), b);
+  }
+
+  inline float16, int frexp(float16 X)
+  {
+    a, b=frexp(tof(X));
+
+    return(tof16(a), b);
+  }
     /* Break X into a normalized fraction and an integral power of 2.  */
 
   inline float ldexp(float X, int EXP)
   {
     return(tof(ldexp(tod(X), EXP)));
+  }
+
+  inline float8 ldexp(float8 X, int EXP)
+  {
+    return(tof8(ldexp(tof(X), EXP)));
+  }
+
+  inline float16 ldexp(float16 X, int EXP)
+  {
+    return(tof16(ldexp(tof(X), EXP)));
   }
     /* X times (two to the EXP power).  */
 
@@ -436,11 +610,31 @@ external double hypot(double X, double Y);
   {
     return(tof(log(tod(X))));
   }
+
+  inline float8 log(float8 X)
+  {
+    return(tof8(log(tof(X))));
+  }
+
+  inline float16 log(float16 X)
+  {
+    return(tof16(log(tof(X))));
+  }
     /* Natural logarithm of X.  */
 
   inline float log10(float X)
   {
     return(tof(log10(tod(X))));
+  }
+
+  inline float8 log10(float8 X)
+  {
+    return(tof8(log10(tof(X))));
+  }
+
+  inline float16 log10(float16 X)
+  {
+    return(tof16(log10(tof(X))));
   }
     /* Base-ten logarithm of X.  */
 
@@ -448,11 +642,31 @@ external double hypot(double X, double Y);
   {
     return(tof(log2(tod(X))));
   }
+
+  inline float8 log2(float8 X)
+  {
+    return(tof8(log2(tof(X))));
+  }
+
+  inline float16 log2(float16 X)
+  {
+    return(tof16(log2(tof(X))));
+  }
     /* Base-two logarithm of X.  */
 
   inline float expm1(float X)
   {
     return(tof(expm1(tod(X))));
+  }
+
+  inline float8 expm1(float8 X)
+  {
+    return(tof8(expm1(tof(X))));
+  }
+
+  inline float16 expm1(float16 X)
+  {
+    return(tof16(expm1(tof(X))));
   }
     /* Return exp(X) - 1.  */
 
@@ -460,12 +674,34 @@ external double hypot(double X, double Y);
   {
     return(tof(log1p(tod(X))));
   }
+
+  inline float8 log1p(float8 X)
+  {
+    return(tof8(log1p(tof(X))));
+  }
+
+  inline float16 log1p(float16 X)
+  {
+    return(tof16(log1p(tof(X))));
+  }
     /* Return log(1 + X).  */
 
   inline float, float modf(float X)
   {
     a, b = modf(tod(X));
     return(tof(a), tof(b));
+  }
+
+  inline float8, float8 modf(float8 X)
+  {
+    a, b = modf(tof(X));
+    return(tof8(a), tof8(b));
+  }
+
+  inline float16, float16 modf(float16 X)
+  {
+    a, b = modf(tof(X));
+    return(tof16(a), tof16(b));
   }
     /* Break VALUE into integral and fractional parts.  */
 
@@ -478,17 +714,47 @@ external double hypot(double X, double Y);
   {
     return(powf(X, Y));
   }
+
+  inline float8 pow(float8 X, float8 Y)
+  {
+    return(tof8(powf(tof(X), tof(Y))));
+  }
+
+  inline float16 pow(float16 X, float16 Y)
+  {
+    return(tof16(powf(tof(X), tof(Y))));
+  }
     /* Return X to the Y power.  */
 
   inline float sqrt(float X)
   {
     return(sqrtf(X));
   }
+
+  inline float8 sqrt(float8 X)
+  {
+    return(tof8(sqrtf(tof(X))));
+  }
+
+  inline float16 sqrt(float16 X)
+  {
+    return(tof16(sqrtf(tof(X))));
+  }
     /* Return the square root of X.  */
 
   inline float cbrt(float X)
   {
     return(tof(cbrt(tod(X))));
+  }
+
+  inline float8 cbrt(float8 X)
+  {
+    return(tof8(cbrt(tof(X))));
+  }
+
+  inline float16 cbrt(float16 X)
+  {
+    return(tof16(cbrt(tof(X))));
   }
     /* Return the cube root of X.  */
 
@@ -501,11 +767,31 @@ external double hypot(double X, double Y);
   {
     return(tof(ceil(tod(X))));
   }
+
+  inline float8 ceil(float8 X)
+  {
+    return(tof8(ceil(tof(X))));
+  }
+
+  inline float16 ceil(float16 X)
+  {
+    return(tof16(ceil(tof(X))));
+  }
     /* Smallest integral value not less than X.  */
 
   inline float fabs(float X)
   {
     return(tof(fabs(tod(X))));
+  }
+
+  inline float8 fabs(float8 X)
+  {
+    return(tof8(fabs(tof(X))));
+  }
+
+  inline float16 fabs(float16 X)
+  {
+    return(tof16(fabs(tof(X))));
   }
     /* Absolute value of X.  */
 
@@ -513,11 +799,31 @@ external double hypot(double X, double Y);
   {
     return(tof(floor(tod(X))));
   }
+
+  inline float8 floor(float8 X)
+  {
+    return(tof8(floor(tof(X))));
+  }
+
+  inline float16 floor(float16 X)
+  {
+    return(tof16(floor(tof(X))));
+  }
     /* Largest integer not greater than X.  */
 
   inline float fmod(float X, float Y)
   {
     return(tof(fmod(tod(X), tod(Y))));
+  }
+
+  inline float8 fmod(float8 X, float8 Y)
+  {
+    return(tof8(fmod(tof(X), tof(Y))));
+  }
+
+  inline float16 fmod(float16 X, float16 Y)
+  {
+    return(tof16(fmod(tof(X), tof(Y))));
   }
     /* Floating-point modulo remainder of X/Y.  */
 
@@ -530,11 +836,31 @@ external double hypot(double X, double Y);
   {
     return(tof(copysign(tod(X), tod(Y))));
   }
+
+  inline float8 copysign(float8 X, float8 Y)
+  {
+    return(tof8(copysign(tof(X), tof(Y))));
+  }
+
+  inline float16 copysign(float16 X, float16 Y)
+  {
+    return(tof16(copysign(tof(X), tof(Y))));
+  }
     /* Return X with its signed changed to Y's.  */
 
   inline float rint(float X)
   {
     return(tof(rint(tod(X))));
+  }
+
+  inline float8 rint(float8 X)
+  {
+    return(tof8(rint(tof(X))));
+  }
+
+  inline float16 rint(float16 X)
+  {
+    return(tof16(rint(tof(X))));
   }
     /* Return the integer nearest X in the direction of the
        prevailing rounding mode.  */
@@ -543,12 +869,64 @@ external double hypot(double X, double Y);
   {
     return(tof(hypot(tod(X), tod(Y))));
   }
+
+  inline float8 hypot(float8 X, float8 Y)
+  {
+    return(tof8(hypot(tof(X), tof(Y))));
+  }
+
+  inline float16 hypot(float16 X, float16 Y)
+  {
+    return(tof16(hypot(tof(X), tof(Y))));
+  }
     /* Return `sqrt(X*X + Y*Y)'.  */
 
 
 
 
 
+
+inline int sign(float8 x)
+{
+  if (x<0f8)
+  {
+    res= -1;
+  }
+  else
+  {
+    if (x>0f8)
+    {
+      res=1;
+    }
+    else
+    {
+      res=0;
+    }
+  }
+
+  return(res);
+}
+
+inline int sign(float16 x)
+{
+  if (x<0f16)
+  {
+    res= -1;
+  }
+  else
+  {
+    if (x>0f16)
+    {
+      res=1;
+    }
+    else
+    {
+      res=0;
+    }
+  }
+
+  return(res);
+}
 
 inline int sign(float x)
 {

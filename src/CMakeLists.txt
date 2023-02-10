@@ -234,9 +234,13 @@ SET (C_DEPS_SRC
     structures/src/Constants/tinydouble.c
     structures/src/Constants/minmax.c
     structures/src/Constants/minint.c
+    structures/src/Constants/minfloat8.c
+    structures/src/Constants/minfloat16.c
     structures/src/Constants/minfloat.c
     structures/src/Constants/mindouble.c
     structures/src/Constants/maxint.c
+    structures/src/Constants/maxfloat8.c
+    structures/src/Constants/maxfloat16.c
     structures/src/Constants/maxfloat.c
     structures/src/Constants/maxdouble.c
     structures/src/Constants/epidouble.c

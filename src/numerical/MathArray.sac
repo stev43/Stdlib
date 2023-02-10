@@ -84,6 +84,8 @@ inline restype[+] op (argtype[+] A, argtype S)              \
  *****************************************************************************/
 
 #define ALL_TYPES_1(template, arg1)                     \
+template(arg1, float8, float8)                          \
+template(arg1, float16, float16)                        \
 template(arg1, float, float)                            \
 template(arg1, double, double)
 
