@@ -252,6 +252,12 @@ MAP_MON_SxA(toul, _toul_S_, fromtype, ulong)	\
 MAP_MON_AxA(toull, _toull_S_, fromtype, ulonglong)	\
 MAP_MON_AxS(toull, _toull_S_, fromtype, ulonglong)	\
 MAP_MON_SxA(toull, _toull_S_, fromtype, ulongllong)	\
+MAP_MON_AxA(tof8, _tof8_S_, fromtype, float8)  \
+MAP_MON_AxS(tof8, _tof8_S_, fromtype, float8)  \
+MAP_MON_SxA(tof8, _tof8_S_, fromtype, float8)  \
+MAP_MON_AxA(tof16, _tof16_S_, fromtype, float16) \
+MAP_MON_AxS(tof16, _tof16_S_, fromtype, float16)  \
+MAP_MON_SxA(tof16, _tof16_S_, fromtype, float16)  \
 MAP_MON_AxA(tof, _tof_S_, fromtype, float)	\
 MAP_MON_AxS(tof, _tof_S_, fromtype, float)	\
 MAP_MON_SxA(tof, _tof_S_, fromtype, float)	\
@@ -278,6 +284,8 @@ MAP_IDENT_AxA(tous, ushort)
 MAP_IDENT_AxA(toui, uint)
 MAP_IDENT_AxA(toul, ulong)
 MAP_IDENT_AxA(toull, ulonglong)
+MAP_IDENT_AxA(tof8, float8)
+MAP_IDENT_AxA(tof16, float16)
 MAP_IDENT_AxA(tof, float)
 MAP_IDENT_AxA(tod, double)
 MAP_IDENT_AxA(toc, char)
