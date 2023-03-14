@@ -146,6 +146,28 @@ inline bool to_bool( ulonglong i)
 	res = false; /* Should be domain error!! */
  return( res);
 }
+
+inline bool to_bool( float8 i)
+{ 
+ if ( _eq_SxS_(1f8,i) )
+  res = true;
+ else if ( _eq_SxS_(0f8,i))
+  res = false;
+ else
+  res = false; /* Should be domain error!! */
+ return( res);
+}
+
+inline bool to_bool( float16 i)
+{ 
+ if ( _eq_SxS_(1f16,i) )
+  res = true;
+ else if ( _eq_SxS_(0f16,i))
+  res = false;
+ else
+  res = false; /* Should be domain error!! */
+ return( res);
+}
 	
 inline bool to_bool( float8 i)
 { 
