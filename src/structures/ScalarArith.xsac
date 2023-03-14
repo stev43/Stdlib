@@ -80,22 +80,40 @@ MAP_ARI_OPS( SxS, type)
 
 NUM(  ARI_OPS_S)
 
+//------------------------------------------------------------------------------
+
+#define ABS_OP_S( type, postfix, zval, oval) \
+MAP_ABS_OP( SxS, type)
+
+#define ABS_NOOP_S( type, postfix, zval, oval) \
+MAP_ABS_NOOP( SxS, type)
+
+/* _abs_ works on all numbers but is noop on unsigned ones */
+SIGNED_NUM(  ABS_OP_S)
+UNSIGNED_INT_NUM(  ABS_NOOP_S)
+
+//------------------------------------------------------------------------------
+
 #define NEG_OP_S( type, postfix, zval, oval) \
 MAP_NEG_OP( SxS, type)
 
 /* _neg_ only works on signed integers and reals */
 SIGNED_NUM(  NEG_OP_S)
 
-#define INT_OPS_S( type, postfix, zval, oval) \
-MAP_INT_OPS( SxS, type)
-
-/* _mod_SxS_ only supports whole numbers */
-INT_NUM(  INT_OPS_S)
+//------------------------------------------------------------------------------
 
 #define ANA_OPS_S( type, postfix, zval, oval) \
 MAP_ANA_OPS( S, type)
 
 NUM(   ANA_OPS_S)
+
+//------------------------------------------------------------------------------
+
+#define INT_OPS_S( type, postfix, zval, oval) \
+MAP_INT_OPS( SxS, type)
+
+/* _mod_SxS_ only supports whole numbers */
+INT_NUM(  INT_OPS_S)
 
 /** <!--********************************************************************-->
  *
@@ -123,6 +141,7 @@ MAP_LOG_OPS( SxS)
  * ConvOPS on scalars (see Templates.mac for details)
  *
  ******************************************************************************/
+<<<<<<< HEAD
 /* no _tobool_S_??? Why not? Ditto _toc_S_ */
 /*
 MAP_MON_SxS(tobool, _tobool_S_, int, bool)
@@ -365,4 +384,17 @@ MAP_MON_SxS(tod, _tod_S_, float8, double)
 MAP_MON_SxS(tod, _tod_S_, float16, double)
 MAP_MON_SxS(tod, _tod_S_, float, double)
 MAP_MON_SxS(tod, _tod_S_, char, double)
+=======
+
+#define BOOL_CONV_OP_S(  type, postfix, zero, one) \
+MAP_BOOL_CONV_OP( SxS, type)
+NUM( BOOL_CONV_OP_S)
+BOOL( BOOL_CONV_OP_S)
+
+#define NUM_CONV_OPS_S( type, postfix, zero, one) \
+MAP_NUM_CONV_OPS( SxS, type)
+
+BUILT_IN( NUM_CONV_OPS_S)
+
+>>>>>>> master
 
