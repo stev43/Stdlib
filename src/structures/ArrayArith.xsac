@@ -209,76 +209,6 @@ MAP_LOG_OPS( AxS)
  * ConvOPS on scalars (see Templates.mac for details)
  ******************************************************************************/
 
-<<<<<<< HEAD
-#define MAP_CONV_OPS(fromtype, postfix, zval, oval)			\
-MAP_MON_AxA(tob, _tob_S_, fromtype, byte)	\
-MAP_MON_AxS(tob, _tob_S_, fromtype, byte)	\
-MAP_MON_SxA(tob, _tob_S_, fromtype, byte)	\
-MAP_MON_AxA(tosh, _tos_S_, fromtype, short)	\
-MAP_MON_AxS(tosh, _tos_S_, fromtype, short)	\
-MAP_MON_SxA(tosh, _tos_S_, fromtype, short)	\
-MAP_MON_AxA(toi, _toi_S_, fromtype, int)	\
-MAP_MON_AxS(toi, _toi_S_, fromtype, int)	\
-MAP_MON_SxA(toi, _toi_S_, fromtype, int)	\
-MAP_MON_AxA(tol, _tol_S_, fromtype, long)	\
-MAP_MON_AxS(tol, _tol_S_, fromtype, long)	\
-MAP_MON_SxA(tol, _tol_S_, fromtype, long)	\
-MAP_MON_AxA(toll, _toll_S_, fromtype, longlong)	\
-MAP_MON_AxS(toll, _toll_S_, fromtype, longlong)	\
-MAP_MON_SxA(toll, _toll_S_, fromtype, longlong)	\
-MAP_MON_AxA(toub, _toub_S_, fromtype, ubyte)	\
-MAP_MON_AxS(toub, _toub_S_, fromtype, ubyte)	\
-MAP_MON_SxA(toub, _toub_S_, fromtype, ubyte)	\
-MAP_MON_AxA(tous, _tous_S_, fromtype, ushort)	\
-MAP_MON_AxS(tous, _tous_S_, fromtype, ushort)	\
-MAP_MON_SxA(tous, _tous_S_, fromtype, ushort)	\
-MAP_MON_AxA(toui, _toui_S_, fromtype, uint)	\
-MAP_MON_AxS(toui, _toui_S_, fromtype, uint)	\
-MAP_MON_SxA(toui, _toui_S_, fromtype, uint)	\
-MAP_MON_AxA(toul, _toul_S_, fromtype, ulong)	\
-MAP_MON_AxS(toul, _toul_S_, fromtype, ulong)	\
-MAP_MON_SxA(toul, _toul_S_, fromtype, ulong)	\
-MAP_MON_AxA(toull, _toull_S_, fromtype, ulonglong)	\
-MAP_MON_AxS(toull, _toull_S_, fromtype, ulonglong)	\
-MAP_MON_SxA(toull, _toull_S_, fromtype, ulongllong)	\
-MAP_MON_AxA(tof8, _tof8_S_, fromtype, float8)  \
-MAP_MON_AxS(tof8, _tof8_S_, fromtype, float8)  \
-MAP_MON_SxA(tof8, _tof8_S_, fromtype, float8)  \
-MAP_MON_AxA(tof16, _tof16_S_, fromtype, float16) \
-MAP_MON_AxS(tof16, _tof16_S_, fromtype, float16)  \
-MAP_MON_SxA(tof16, _tof16_S_, fromtype, float16)  \
-MAP_MON_AxA(tof, _tof_S_, fromtype, float)	\
-MAP_MON_AxS(tof, _tof_S_, fromtype, float)	\
-MAP_MON_SxA(tof, _tof_S_, fromtype, float)	\
-MAP_MON_AxA(tod, _tod_S_, fromtype, double)	\
-MAP_MON_AxS(tod, _tod_S_, fromtype, double)	\
-MAP_MON_SxA(tod, _tod_S_, fromtype, double)	\
-
-BUILT_IN(MAP_CONV_OPS)
-
-#define MAP_IDENT_AxA( name, a) \
-inline a[*] name( a[*] A)	\
-{ /* Identity coercion */	\
- return(A);			\
-}
-
-MAP_IDENT_AxA(to_bool, bool)
-MAP_IDENT_AxA(tob, byte)
-MAP_IDENT_AxA(tosh, short)
-MAP_IDENT_AxA(toi, int)
-MAP_IDENT_AxA(tol, long)
-MAP_IDENT_AxA(toll, longlong)
-MAP_IDENT_AxA(toub, ubyte)
-MAP_IDENT_AxA(tous, ushort)
-MAP_IDENT_AxA(toui, uint)
-MAP_IDENT_AxA(toul, ulong)
-MAP_IDENT_AxA(toull, ulonglong)
-MAP_IDENT_AxA(tof8, float8)
-MAP_IDENT_AxA(tof16, float16)
-MAP_IDENT_AxA(tof, float)
-MAP_IDENT_AxA(tod, double)
-MAP_IDENT_AxA(toc, char)
-=======
 #define BOOL_CONV_OP_A(  type, postfix, zero, one) \
 MAP_BOOL_CONV_OP( AxA, type)
 NUM( BOOL_CONV_OP_A)
@@ -286,7 +216,6 @@ BOOL( BOOL_CONV_OP_A)
 
 #define NUM_CONV_OPS_A( type, postfix, zero, one) \
 MAP_NUM_CONV_OPS( AxA, type)
->>>>>>> master
 
 BUILT_IN( NUM_CONV_OPS_A)
 
