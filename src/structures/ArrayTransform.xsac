@@ -94,9 +94,9 @@ int signum( int y)
 //     42 42
 //      0  0
 
-#define TAKE( sactyp, postfix, zval, oval, ctyp)                                 \
+#define TAKE( sactype, postfix, zval, oval, ctype)                               \
 inline                                                                           \
-sactyp[+] take( int[.] v, sactyp[+] array)                                       \
+sactype[+] take( int[.] v, sactype[+] array)                                     \
 {                                                                                \
   shpa = _shape_A_( array);                                                      \
   zr = _mul_VxS_( shpa, 0);                                                      \
@@ -135,9 +135,9 @@ BUILT_IN( TAKE)
 
 /*----------------------------------------------------------------------------*/
 
-#define DROP( sactyp, postfix, zval, oval, ctyp)                                 \
+#define DROP( sactype, postfix, zval, oval, ctype)                               \
 inline                                                                           \
-sactyp[*] drop( int[.] v, sactyp[*] array)                                       \
+sactype[*] drop( int[.] v, sactype[*] array)                                     \
 {                                                                                \
   shpa = _shape_A_( array);                                                      \
   zr = _mul_VxS_( shpa, 0);                                                      \
@@ -163,9 +163,9 @@ BUILT_IN( DROP)
 
 /*----------------------------------------------------------------------------*/
 
-#define TILE( sactyp, postfix, zval, oval, ctyp)                          \
+#define TILE( sactype, postfix, zval, oval, ctype)                        \
 inline                                                                    \
-sactyp[*] tile( int[.] shp, int[.] idx, sactyp[*] array)                  \
+sactype[*] tile( int[.] shp, int[.] idx, sactype[*] array)                \
 {                                                                         \
   res = with {                                                            \
           ( . <= iv <= . ) : _sel_VxA_( _add_VxV_( idx, iv), array);      \
@@ -178,9 +178,9 @@ BUILT_IN( TILE)
 /*----------------------------------------------------------------------------*/
 
 /* First axis catenation */
-#define CAT( sactyp, postfix, zval, oval, ctyp)                             \
+#define CAT( sactype, postfix, zval, oval, ctype)                           \
 inline                                                                      \
-sactyp[+] ++( sactyp[+] arr_a, sactyp[+] arr_b)                             \
+sactype[+] ++( sactype[+] arr_a, sactype[+] arr_b)                          \
 { /* Array-Array catenate, first axis */                                    \
   new_shp = _idx_modarray_AxSxS_( _shape_A_( arr_a), 0,                     \
                         _add_SxS_( _sel_VxA_([0], _shape_A_( arr_a)),       \
@@ -197,7 +197,7 @@ sactyp[+] ++( sactyp[+] arr_a, sactyp[+] arr_b)                             \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] ++( sactyp[+] arr_a, sactyp arr_b)                                \
+sactype[+] ++( sactype[+] arr_a, sactype arr_b)                             \
 {  /* Array-Scalar catenate, first axis */                                  \
   new_shp = _idx_modarray_AxSxS_( _shape_A_( arr_a), 0,                     \
                         _add_SxS_( _sel_VxA_([0], _shape_A_( arr_a)), 1));  \
@@ -213,7 +213,7 @@ sactyp[+] ++( sactyp[+] arr_a, sactyp arr_b)                                \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] ++( sactyp arr_a, sactyp[+] arr_b)                                \
+sactype[+] ++( sactype arr_a, sactype[+] arr_b)                             \
 { /* Scalar-Array catenate, first axis */                                   \
   new_shp = _idx_modarray_AxSxS_( _shape_A_( arr_b), 0,                     \
               _add_SxS_( 1, _sel_VxA_([0], _shape_A_( arr_b))));            \
@@ -229,7 +229,7 @@ sactyp[+] ++( sactyp arr_a, sactyp[+] arr_b)                                \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] ++( sactyp arr_a, sactyp arr_b)                                   \
+sactype[+] ++( sactype arr_a, sactype arr_b)                                \
 { /* Scalar-Scalar catenate, first axis  */                                 \
   res = [arr_a, arr_b];                                                     \
   return( res);                                                             \
@@ -241,9 +241,9 @@ BUILT_IN( CAT)
 // We assume that x and y are the same shape, except 
 // perhaps along the last axis.
 
-#define CATENATE( sactyp, postfix, zval, oval, ctyp)                        \
+#define CATENATE( sactype, postfix, zval, oval, ctype)                      \
 inline                                                                      \
-sactyp[+] catenate( sactyp[+] x, sactyp[+] y)                               \
+sactype[+] catenate( sactype[+] x, sactype[+] y)                            \
 { /* Array-Array catenate, last axis */                                     \
   axis = _dim_A_( x) - 1;                                                   \
   colsx = _shape_A_(x) [ axis];                                             \
@@ -262,7 +262,7 @@ sactyp[+] catenate( sactyp[+] x, sactyp[+] y)                               \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] catenate( sactyp[+] x, sactyp y)                                  \
+sactype[+] catenate( sactype[+] x, sactype y)                               \
 { /* Array-Scalar catenate, last axis */                                    \
   axis = _dim_A_( x) - 1;                                                   \
   colsx = _shape_A_(x) [ axis];                                             \
@@ -281,7 +281,7 @@ sactyp[+] catenate( sactyp[+] x, sactyp y)                                  \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] catenate( sactyp x, sactyp[+] y)                                  \
+sactype[+] catenate( sactype x, sactype[+] y)                               \
 { /* Scalar-Array catenate, last axis  */                                   \
   axis = _dim_A_( y) - 1;                                                   \
   colsx = 1;                                                                \
@@ -300,7 +300,7 @@ sactyp[+] catenate( sactyp x, sactyp[+] y)                                  \
 }                                                                           \
                                                                             \
 inline                                                                      \
-sactyp[+] catenate( sactyp x, sactyp y)                                     \
+sactype[+] catenate( sactype x, sactype y)                                  \
 { /* Scalar-Scalar catenate, last axis */                                   \
   z = [x, y];                                                               \
   return( z);                                                               \
@@ -313,9 +313,9 @@ BUILT_IN( CATENATE)
 
 /* First axis reverse */
 
-#define REVERSE( sactyp, postfix, zval, oval, ctyp)                         \
+#define REVERSE( sactype, postfix, zval, oval, ctype)                       \
 inline                                                                      \
-sactyp[+] reverse( sactyp[+] arr_a)                                         \
+sactype[+] reverse( sactype[+] arr_a)                                       \
 {                                                                           \
   maxidx0 = _sub_SxS_( _sel_VxA_( [0], _shape_A_( arr_a)), 1);              \
   res = with {                                                              \
@@ -328,9 +328,9 @@ BUILT_IN( REVERSE)
 
 /* Reverse on specified axis: 0 is leading axis, dim-1 is trailing axis */
 
-#define REVERSEAXIS( sactyp, postfix, zval, oval, ctyp)                     \
+#define REVERSEAXIS( sactype, postfix, zval, oval, ctype)                   \
 inline                                                                      \
-sactyp[+] reverse( int axis, sactyp[+] arr_a)                               \
+sactype[+] reverse( int axis, sactype[+] arr_a)                             \
 {                                                                           \
   shp = _shape_A_( arr_a);                                                  \
   zer = _mul_VxS_( shp, 0);                                                 \
@@ -349,9 +349,9 @@ BUILT_IN( REVERSEAXIS)
 
 /*----------------------------------------------------------------------------*/
 
-#define TRANSPOSE( sactyp, postfix, zval, oval, ctyp)                       \
+#define TRANSPOSE( sactype, postfix, zval, oval, ctype)                     \
 inline                                                                      \
-sactyp[+] transpose( sactyp[+] arr_a)                                       \
+sactype[+] transpose( sactype[+] arr_a)                                     \
 {                                                                           \
   res = with {                                                              \
           ( . <= iv <= . ) : arr_a[ reverse( iv)];                          \
@@ -364,9 +364,9 @@ BUILT_IN( TRANSPOSE)
 
 /*----------------------------------------------------------------------------*/
 // Positive shift is to right, negative to left 
-#define SHIFT_S( sactyp, postfix, zval, oval, ctyp)                         \
+#define SHIFT_S( sactype, postfix, zval, oval, ctype)                       \
 inline                                                                      \
-sactyp[+] shift (int dimension, int count, sactyp boundary, sactyp[+] A)    \
+sactype[+] shift (int dimension, int count, sactype boundary, sactype[+] A) \
 { shpa = _shape_A_( A);                                                     \
   max_shift = _sel_VxA_( [dimension], shpa);                                \
   zr = _mul_SxV_( 0, shpa);                                                 \
@@ -394,9 +394,9 @@ sactyp[+] shift (int dimension, int count, sactyp boundary, sactyp[+] A)    \
   return(result);                                                           \
 }
 
-#define SHIFT_V( sactyp, postfix, zval, oval, ctyp)                \
+#define SHIFT_V( sactype, postfix, zval, oval, ctype)              \
 inline                                                             \
-sactyp[+] shift (int[.] counts, sactyp boundary, sactyp[+] A)      \
+sactype[+] shift (int[.] counts, sactype boundary, sactype[+] A)   \
 {                                                                  \
                                                                    \
   for( i=0; i <shape(counts)[0]; i=i +1) {                         \
@@ -407,18 +407,18 @@ sactyp[+] shift (int[.] counts, sactyp boundary, sactyp[+] A)      \
   return(A);                                                       \
 }
 
-#define SHIFT_V_Z( sactyp, postfix, zval, oval, ctyp) \
-inline                                                \
-sactyp[+] shift (int[.] counts, sactyp[+] A)          \
-{                                                     \
-  return( shift ( counts, zval, A));                  \
+#define SHIFT_V_Z( sactype, postfix, zval, oval, ctype) \
+inline                                                  \
+sactype[+] shift (int[.] counts, sactype[+] A)          \
+{                                                       \
+  return( shift ( counts, zval, A));                    \
 }
 
 
-#define SHIFT( sactyp, postfix, zval, oval, ctyp)  \
-SHIFT_S( sactyp, postfix, zval, oval, ctyp)        \
-SHIFT_V( sactyp, postfix, zval, oval, ctyp)        \
-SHIFT_V_Z( sactyp, postfix, zval, oval, ctyp)
+#define SHIFT( sactype, postfix, zval, oval, ctype)  \
+SHIFT_S( sactype, postfix, zval, oval, ctype)        \
+SHIFT_V( sactype, postfix, zval, oval, ctype)        \
+SHIFT_V_Z( sactype, postfix, zval, oval, ctype)
 
 BUILT_IN( SHIFT)
 
@@ -434,9 +434,9 @@ BUILT_IN( SHIFT)
  *
  */
 
-#define ROTATE_S( sactyp, postfix, zval, oval, ctyp)                   \
+#define ROTATE_S( sactype, postfix, zval, oval, ctype)                 \
 inline                                                                 \
-sactyp[+] rotate (int dimension, int count, sactyp[+] A)               \
+sactype[+] rotate (int dimension, int count, sactype[+] A)             \
 {                                                                      \
                                                                        \
   max_rotate = _sel_VxA_( [dimension], _shape_A_(A));                  \
@@ -465,9 +465,9 @@ sactyp[+] rotate (int dimension, int count, sactyp[+] A)               \
  *
  */
 
-#define ROTATE_V( sactyp, postfix, zval, oval, ctyp)               \
+#define ROTATE_V( sactype, postfix, zval, oval, ctype)             \
 inline                                                             \
-sactyp[+] rotate (int[.] counts,  sactyp[+] A)                     \
+sactype[+] rotate (int[.] counts,  sactype[+] A)                   \
 {                                                                  \
   int offset;                                                      \
                                                                    \
@@ -479,9 +479,9 @@ sactyp[+] rotate (int[.] counts,  sactyp[+] A)                     \
   return(A);                                                       \
 }
 
-#define ROTATE( sactyp, postfix, zval, oval, ctyp)  \
-ROTATE_S( sactyp, postfix, zval, oval, ctyp)        \
-ROTATE_V( sactyp, postfix, zval, oval, ctyp)
+#define ROTATE( sactype, postfix, zval, oval, ctype)  \
+ROTATE_S( sactype, postfix, zval, oval, ctype)        \
+ROTATE_V( sactype, postfix, zval, oval, ctype)
 
 BUILT_IN( ROTATE)
 
@@ -492,9 +492,9 @@ BUILT_IN( ROTATE)
  *
  ********************************************************************************/
 
-#define WHERE_AxA( sactyp, postfix, zval, oval, ctyp)    \
+#define WHERE_AxA( sactype, postfix, zval, oval, ctype)  \
 inline                                                   \
-sactyp[*] where( bool[*] p, sactyp[*] A, sactyp[*] B)    \
+sactype[*] where( bool[*] p, sactype[*] A, sactype[*] B) \
 {                                                        \
   res = with {                                           \
           ( . <= iv <= . )                               \
@@ -510,9 +510,9 @@ sactyp[*] where( bool[*] p, sactyp[*] A, sactyp[*] B)    \
   return( res);                                          \
 }
 
-#define WHERE_AxS( sactyp, postfix, zval, oval, ctyp)    \
+#define WHERE_AxS( sactype, postfix, zval, oval, ctype)  \
 inline                                                   \
-sactyp[*] where( bool[*] p, sactyp[+] A, sactyp B)       \
+sactype[*] where( bool[*] p, sactype[+] A, sactype B)    \
 {                                                        \
   res = with {                                           \
           ( . <= iv <= . )                               \
@@ -528,9 +528,9 @@ sactyp[*] where( bool[*] p, sactyp[+] A, sactyp B)       \
   return( res);                                          \
 }
 
-#define WHERE_SxA( sactyp, postfix, zval, oval, ctyp)    \
+#define WHERE_SxA( sactype, postfix, zval, oval, ctype)  \
 inline                                                   \
-sactyp[*] where( bool[*] p, sactyp A, sactyp[+] B)       \
+sactype[*] where( bool[*] p, sactype A, sactype[+] B)    \
 {                                                        \
   res = with {                                           \
           ( . <= iv <= . )                               \
@@ -546,9 +546,9 @@ sactyp[*] where( bool[*] p, sactyp A, sactyp[+] B)       \
   return( res);                                          \
 }
 
-#define WHERE_SxS( sactyp, postfix, zval, oval, ctyp)    \
+#define WHERE_SxS( sactype, postfix, zval, oval, ctype)  \
 inline                                                   \
-sactyp[*] where( bool[*] p, sactyp A, asctyp B)          \
+sactype[*] where( bool[*] p, sactype A, asctype B)       \
 {                                                        \
   res = with {                                           \
           ( . <= iv <= . )                               \
@@ -564,17 +564,17 @@ sactyp[*] where( bool[*] p, sactyp A, asctyp B)          \
   return( res);                                          \
 }
 
-#define WHERE( sactyp, postfix, zval, oval, ctyp)        \
-WHERE_AxA( sactyp, postfix, zval, oval, ctyp)            \
-WHERE_AxS( sactyp, postfix, zval, oval, ctyp)            \
-WHERE_SxA( sactyp, postfix, zval, oval, ctyp)            \
-WHERE_SxS( sactyp, postfix, zval, oval, ctyp)
+#define WHERE( sactype, postfix, zval, oval, ctype)        \
+WHERE_AxA( sactype, postfix, zval, oval, ctype)            \
+WHERE_AxS( sactype, postfix, zval, oval, ctype)            \
+WHERE_SxA( sactype, postfix, zval, oval, ctype)            \
+WHERE_SxS( sactype, postfix, zval, oval, ctype)
 
 BUILT_IN( WHERE)
 
-#define REDUCE( name, typ, fun, neutral)                            \
+#define REDUCE( name, type, fun, neutral)                           \
 inline                                                              \
-typ name( typ[*] arr_a)                                             \
+type name( type[*] arr_a)                                           \
 {                                                                   \
   res = with {                                                      \
           ( _mul_SxV_(0,_shape_A_(arr_a)) <= iv < _shape_A_(arr_a) )\
@@ -584,12 +584,12 @@ typ name( typ[*] arr_a)                                             \
   return( res);                                                     \
 }
 
-#define SUM( sactyp, postfix, zval, oval, ctyp) REDUCE( sum, typ, +, zval)
-#define PROD( sactyp, postfix, zval, oval, ctyp) REDUCE( prod, typ, *, oval)
+#define SUM( sactype, postfix, zval, oval, ctype) REDUCE( sum, type, +, zval)
+#define PROD( sactype, postfix, zval, oval, ctype) REDUCE( prod, type, *, oval)
 #define ALL REDUCE( all, bool, &, true)
 #define ANY REDUCE( any, bool, |, false)
-#define MAXVAL( sactyp, postfix, zval, oval, ctyp) REDUCE( maxval, typ, max, min##typ())
-#define MINVAL( sactyp, postfix, zval, oval, ctyp) REDUCE( minval, typ, min, max##typ())
+#define MAXVAL( sactype, postfix, zval, oval, ctype) REDUCE( maxval, type, max, min##type())
+#define MINVAL( sactype, postfix, zval, oval, ctype) REDUCE( minval, type, min, max##type())
 
 NUM( SUM)
 NUM( PROD)
@@ -599,28 +599,28 @@ NUM( MINVAL)
 ALL
 ANY
 
-/* The match verb */
-#define MATCH( sactyp, postfix, zval, oval, ctyp)             \
-inline						              \
-bool match( sactyp arr_a, sactyp arr_b)		              \
-{						              \
- return( arr_a == arr_b);			              \
+/* The match verb */ 
+#define MATCH( sactype, postfix, zval, oval, ctype)                     \
+inline						                                                      \
+bool match( sactype arr_a, sactype arr_b)		                            \
+{						                                                            \
+ return( arr_a == arr_b);			                                          \
 }									                                                      \
 									                                                      \
-inline						                      \
-bool match( sactyp[+] arr_a, typ arr_b)					                          \
+inline						                                                      \
+bool match( sactype[+] arr_a, type arr_b)					                      \
 {									                                                      \
  return(false);								                                          \
 }									                                                      \
 									                                                      \
 inline									                                                \
-bool match( typ arr_a, typ[+] arr_b)					                          \
+bool match( type arr_a, type[+] arr_b)					                        \
 {									                                                      \
  return( false);							                                          \
 }									                                                      \
 									                                                      \
 inline									                                                \
-bool match( typ[+] arr_a, typ[+] arr_b)					                        \
+bool match( type[+] arr_a, type[+] arr_b)					                      \
 {									                                                      \
  if ((_dim_A_( arr_a) == _dim_A_( arr_b)) && 				                    \
 	(all(_eq_VxV_(_shape_A_(arr_a), _shape_A_(arr_b))))){		              \
@@ -649,78 +649,78 @@ BUILT_IN( MATCH)
  *
  ********************************************************************************/
 
-#define MASK_SxSxS( typ, postfix, zval, oval)                             \
+#define MASK_SxSxS( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ mask( bool p, typ A, typ B)                                           \
+sactype mask( bool p, sactype A, sactype B)                               \
 {                                                                         \
   res = _mask_SxSxS_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_SxSxV( typ, postfix, zval, oval)                             \
+#define MASK_SxSxV( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ[.] mask( bool p, typ A, typ[.] B)                                     \
+sactype[.] mask( bool p, sactype A, sactype[.] B)                         \
 {                                                                         \
   res = _mask_SxSxV_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_SxVxS( typ, postfix, zval, oval)                             \
+#define MASK_SxVxS( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ[.] mask( bool p, typ[.] A, typ B)                                     \
+sactype[.] mask( bool p, sactype[.] A, sactype B)                         \
 {                                                                         \
   res = _mask_SxVxS_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_SxVxV( typ, postfix, zval, oval)                             \
+#define MASK_SxVxV( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ[.] mask( bool p, typ[.] A, typ[.] B)                                  \
+sactype[.] mask( bool p, sactype[.] A, sactype[.] B)                      \
 {                                                                         \
   res = _mask_SxVxV_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxSxS( typ, postfix, zval, oval)                             \
+#define MASK_VxSxS( sactype, postfix, zval, oval)                         \
 inline                                                                    \
-typ[.] mask( bool[.] p, typ A, typ B)                                     \
+sactype[.] mask( bool[.] p, sactype A, sactype B)                         \
 {                                                                         \
   res = _mask_VxSxS_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxSxV( typ, postfix, zval, oval)                             \
+#define MASK_VxSxV( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ[.] mask( bool[.] p, typ A, typ[.] B)                                  \
+sactype[.] mask( bool[.] p, sactype A, sactype[.] B)                      \
 {                                                                         \
   res = _mask_VxSxV_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxVxS( typ, postfix, zval, oval)                             \
+#define MASK_VxVxS( sactype, postfix, zval, oval)                         \
 inline                                                                    \
-typ[.] mask( bool[.] p, typ[.] A, typ B)                                  \
+sactype[.] mask( bool[.] p, sactype[.] A, sactype B)                      \
 {                                                                         \
   res = _mask_VxVxS_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxVxV( typ, postfix, zval, oval)                             \
+#define MASK_VxVxV( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
-typ[.] mask( bool[.] p, typ[.] A, typ[.] B)                               \
+sactype[.] mask( bool[.] p, sactype[.] A, sactype[.] B)                   \
 {                                                                         \
   res = _mask_VxVxV_( p, A, B);                                           \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK( typ, postfix, zval, oval)                            \
-MASK_SxSxS( typ, postfix, zval, oval)                              \
-MASK_SxSxV( typ, postfix, zval, oval)                              \
-MASK_SxVxS( typ, postfix, zval, oval)                              \
-MASK_SxVxV( typ, postfix, zval, oval)                              \
-MASK_VxSxV( typ, postfix, zval, oval)                              \
-MASK_VxVxS( typ, postfix, zval, oval)                              \
-MASK_VxVxV( typ, postfix, zval, oval)                              \
+#define MASK( sactype, postfix, zval, oval, ctype)                            \
+MASK_SxSxS( sactype, postfix, zval, oval, ctype)                              \
+MASK_SxSxV( sactype, postfix, zval, oval, ctype)                              \
+MASK_SxVxS( sactype, postfix, zval, oval, ctype)                              \
+MASK_SxVxV( sactype, postfix, zval, oval, ctype)                              \
+MASK_VxSxV( sactype, postfix, zval, oval, ctype)                              \
+MASK_VxVxS( sactype, postfix, zval, oval, ctype)                              \
+MASK_VxVxV( sactype, postfix, zval, oval, ctype)                              \
 
 /* MASK_VxSxS( a) FIXME in ct_prf.c */
 

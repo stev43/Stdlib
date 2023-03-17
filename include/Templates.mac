@@ -178,7 +178,9 @@ MAP_MON_##ext( toui, _toui_S_, a, uint)             \
 MAP_MON_##ext( toul, _toul_S_, a, ulong)            \
 MAP_MON_##ext( toull, _toull_S_, a, ulonglong)      \
 MAP_MON_##ext( tof8, _tof8_S_, a, float8)           \
-MAP_MON_##ext( tof16, _tof16_S_, a, float16)
+MAP_MON_##ext( tof16, _tof16_S_, a, float16)        
+
+//MAP_MON_##ext( told, _told_S_, a, longdouble)
 
 #ifdef FULLTYPES
 

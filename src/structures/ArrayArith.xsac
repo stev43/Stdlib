@@ -139,10 +139,10 @@ b[+] name( a[+] A)                                         \
  *
  ******************************************************************************/
 
-#define ARI_OPS_A( sactyp, postfix, zval, oval, ctyp) \
-MAP_ARI_OPS( AxA, sactyp)                             \
-MAP_ARI_OPS( SxA, sactyp)                             \
-MAP_ARI_OPS( AxS, sactyp)
+#define ARI_OPS_A( sactype, postfix, zval, oval, ctype) \
+MAP_ARI_OPS( AxA, sactype)                              \
+MAP_ARI_OPS( SxA, sactype)                              \
+MAP_ARI_OPS( AxS, sactype)
 
 NUM(  ARI_OPS_A)
 
@@ -173,8 +173,8 @@ MAP_NEG_OP( AxS, sactype)
 SIGNED_NUM(  NEG_OP_A)
 
 #define NEG_OP_A( sactype, postfix, zval, oval, ctype) \
-MAP_NEG_OP( AxA, sactype)                 \
-MAP_NEG_OP( SxA, sactype)                 \
+MAP_NEG_OP( AxA, sactype)                              \
+MAP_NEG_OP( SxA, sactype)                              \
 MAP_NEG_OP( AxS, sactype)
 
 SIGNED_NUM(  NEG_OP_A)

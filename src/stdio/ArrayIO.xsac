@@ -46,14 +46,14 @@ external void printarray(TermFile &stream, string fmt, int d,                 \
 #define LINKSPECS(actualtype, typename)                                       \
 external void printarray(File &stream, int d, int[.] s, actualtype[*] a);     \
   PRINTME(HASH)pragma linkname QUOTEME(ARRAYIO__Print##typename##Array)       \
-  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"               \
+  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"                      \
 external void printarray(TermFile &stream, int d, int[.] s, actualtype[*] a); \
   PRINTME(HASH)pragma linkname QUOTEME(ARRAYIO__Print##typename##Array)       \
-  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"               \
+  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"                      \
 external void printarray(File &stream, string fmt,                            \
                          int d, int[.] s, actualtype[*] a);                   \
   PRINTME(HASH)pragma linkname QUOTEME(ARRAYIO__Print##typename##ArrayFormat) \
-  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"               \
+  PRINTME(HASH)pragma linkobj "src/ArrayIO/PrintArray.o"                      \
 external void printarray(TermFile &stream, string fmt, int d,                 \
                          int[.] s, actualtype[*] a);                          \
   PRINTME(HASH)pragma linkname QUOTEME(ARRAYIO__Print##typename##ArrayFormat) \
@@ -89,20 +89,20 @@ external void showarray(TermFile &stream, int d, int[.] s, char[*] a);
 
 #ifdef SAC_BACKEND_DISTMEM
 
-#define PRINT( type, postfix, zero, one)                                \
-inline void fprint(File &stream, typ[+] arr)                            \
+#define PRINT( sactype, postfix, zero, one, ctype)                      \
+inline void fprint(File &stream, sactype[+] arr)                        \
 {                                                                       \
   printarray(stream, dim(arr), shape(arr), arr,                         \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void fprint(TermFile &stream, typ[+] arr)                        \
+inline void fprint(TermFile &stream, sactype[+] arr)                    \
 {                                                                       \
   printarray(stream, dim(arr), shape(arr), arr,                         \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void print(typ[+] arr)                                           \
+inline void print(sactype[+] arr)                                       \
 {                                                                       \
   printarray(stdout, dim(arr), shape(arr), arr,                         \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
@@ -110,19 +110,19 @@ inline void print(typ[+] arr)                                           \
                                                                         \
                                                                         \
                                                                         \
-inline void fprint(File &stream, string fmt, typ[+] arr)                \
+inline void fprint(File &stream, string fmt, sactypr[+] arr)            \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void fprint(TermFile &stream, string fmt, typ[+] arr)            \
+inline void fprint(TermFile &stream, string fmt, sactyp[+] arr)         \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void print(string fmt, typ[+] arr)                               \
+inline void print(string fmt, sactyp[+] arr)                            \
 {                                                                       \
   printarray(stdout, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
@@ -132,35 +132,35 @@ inline void print(string fmt, typ[+] arr)                               \
 #else /* defined(SAC_BACKEND_DISTMEM) */
 
 
-#define PRINT( typ, postfix, zero, one)                                \
-inline void fprint(File &stream, typ[+] arr)                            \
+#define PRINT( sactype, postfix, zero, one, ctype)                      \
+inline void fprint(File &stream, sactype[+] arr)                        \
 {                                                                       \
   printarray(stream, dim(arr), shape(arr), arr);                        \
 }                                                                       \
                                                                         \
-inline void fprint(TermFile &stream, typ[+] arr)                        \
+inline void fprint(TermFile &stream, sactype[+] arr)                    \
 {                                                                       \
   printarray(stream, dim(arr), shape(arr), arr);                        \
 }                                                                       \
                                                                         \
-inline void print(typ[+] arr)                                           \
+inline void print(sactype[+] arr)                                       \
 {                                                                       \
   printarray(stdout, dim(arr), shape(arr), arr);                        \
 }                                                                       \
                                                                         \
                                                                         \
                                                                         \
-inline void fprint(File &stream, string fmt, typ[+] arr)                \
+inline void fprint(File &stream, string fmt, sactype[+] arr)            \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr);                   \
 }                                                                       \
                                                                         \
-inline void fprint(TermFile &stream, string fmt, typ[+] arr)            \
+inline void fprint(TermFile &stream, string fmt, sactype[+] arr)        \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr);                   \
 }                                                                       \
                                                                         \
-inline void print(string fmt, typ[+] arr)                               \
+inline void print(string fmt, sactype[+] arr)                           \
 {                                                                       \
   printarray(stdout, fmt, dim(arr), shape(arr), arr);                   \
 }                                                                       \

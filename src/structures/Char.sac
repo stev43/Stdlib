@@ -80,20 +80,20 @@ external char toupper (char C);
     /* These functions convert upper case letters into lower case letters
        and vice versa. */
 
-#define TOCHAR_S( sactyp, postfix, zval, oval, ctyp) \
-inline char tochar( sactyp a                          \
-{                                                     \
-  return _toc_S_ (a);                                 \
+#define TOCHAR_S( sactype, postfix, zval, oval, ctype) \
+inline char tochar( sactype a )                        \
+{                                                      \
+  return _toc_S_ (a);                                  \
 }
 
-#define TOCHAR_A( sactyp, postfix, zval, oval, ctyp) \
-inline char[*] tochar( sactyp[+] a)                  \
-{                                                    \
-  res = with {                                       \
-          ( . <= iv <= . ) : _toc_S_( a[iv] );       \
-        } : genarray( shape(a), ' ' );               \
-                                                     \
-  return( res);                                      \
+#define TOCHAR_A( sactype, postfix, zval, oval, ctype) \
+inline char[*] tochar( sactype[+] a)                   \
+{                                                      \
+  res = with {                                         \
+          ( . <= iv <= . ) : _toc_S_( a[iv] );         \
+        } : genarray( shape(a), ' ' );                 \
+                                                       \
+  return( res);                                        \
 }
 
 /**
