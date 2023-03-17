@@ -80,14 +80,14 @@ external char toupper (char C);
     /* These functions convert upper case letters into lower case letters
        and vice versa. */
 
-#define TOCHAR_S( typ, postfix, zval, oval)          \
-inline char tochar( typ a)                           \
-{                                                    \
-  return _toc_S_ (a);                                \
+#define TOCHAR_S( sactyp, postfix, zval, oval, ctyp) \
+inline char tochar( sactyp a                          \
+{                                                     \
+  return _toc_S_ (a);                                 \
 }
 
-#define TOCHAR_A( typ, postfix, zval, oval)          \
-inline char[*] tochar( typ[+] a)                     \
+#define TOCHAR_A( sactyp, postfix, zval, oval, ctyp) \
+inline char[*] tochar( sactyp[+] a)                  \
 {                                                    \
   res = with {                                       \
           ( . <= iv <= . ) : _toc_S_( a[iv] );       \

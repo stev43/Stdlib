@@ -13,11 +13,11 @@ export all;
  *
  ******************************************************************************/
 
-#define DIM( typ, postfix, zval, oval) \
-inline                                 \
-int dim( typ[*] array)                 \
-{                                      \
-  return( _dim_A_( array));            \
+#define DIM( sactyp, postfix, zval, oval, ctyp) \
+inline                                          \
+int dim( sactyp[*] array)                       \
+{                                               \
+  return( _dim_A_( array));                     \
 }
 
 BUILT_IN( DIM)
@@ -32,11 +32,11 @@ BUILT_IN( DIM)
  ******************************************************************************/
 
 
-#define SHAPE( typ, postfix, zval, oval) \
-inline                                   \
-int[.] shape( typ[*] array)              \
-{                                        \
-  return( _shape_A_( array));            \
+#define SHAPE( sactyp, postfix, zval, oval, ctyp)  \
+inline                                             \
+int[.] shape( sactyp[*] array)                     \
+{                                                  \
+  return( _shape_A_( array));                      \
 }
 
 BUILT_IN( SHAPE)
@@ -52,11 +52,11 @@ BUILT_IN( SHAPE)
  *
  ******************************************************************************/
 
-#define RESHAPE( typ, postfix, zval, oval)   \
-inline                                       \
-typ[*] reshape( int[.] shp, typ[*] A)        \
-{                                            \
-  return( _reshape_VxA_( shp, A));           \
+#define RESHAPE( sactyp, postfix, zval, oval, ctyp)    \
+inline                                                 \
+sactyp[*] reshape( int[.] shp, sactyp[*] A)            \
+{                                                      \
+  return( _reshape_VxA_( shp, A));                     \
 }
 
 BUILT_IN( RESHAPE)
@@ -115,9 +115,9 @@ inline int xrhoshape( int[.] S)
  *
  ******************************************************************************/
 
-#define RAVEL( typ, postfix, zval, oval)           \
+#define RAVEL( sactyp, postfix, zval, oval, ctyp)  \
 inline                                             \
-typ[.] ravel( typ[*] A)		                         \
+sactyp[.] ravel( sactyp[*] A)		           \
 {                                                  \
   return( _reshape_([xrhoshape(_shape_(A))], A));  \
 }
@@ -135,9 +135,9 @@ BUILT_IN( RAVEL)
  *
  ******************************************************************************/
 
-#define SEL_VxA( typ, postfix, zval, oval)                               \
+#define SEL_VxA( sactyp, postfix, zval, oval, ctyp)                      \
 inline                                                                   \
-typ[*] sel( int[.] idx, typ[*] array)                                    \
+sactyp[*] sel( int[.] idx, sactyp[*] array)                              \
 {                                                                        \
   new_shape = _drop_SxV_( _sel_VxA_( [0], _shape_A_(idx)),               \
                           _shape_A_(array));                             \
@@ -160,11 +160,11 @@ BUILT_IN( SEL_VxA)
  *
  ******************************************************************************/
 
-#define SEL_SxA( typ, postfix, zval, oval) \
-inline                                     \
-typ[*] sel( int idx, typ[*] A)             \
-{                                          \
-  return( sel( [idx], A));                 \
+#define SEL_SxA( sactyp, postfix, zval, oval, ctyp) \
+inline                                              \
+sactyp[*] sel( int idx, sactyp[*] A)                \
+{                                                   \
+  return( sel( [idx], A));                          \
 }
 
 BUILT_IN( SEL_SxA)
@@ -178,46 +178,46 @@ BUILT_IN( SEL_SxA)
  *           shape( idx)[[0]] == dim( Array) holds.
  *
  ******************************************************************************/
-#define GENARRAY( typ, postfix, zval, oval)        \
-inline                                             \
-typ[*] genarray( int[.] shp, typ[*] val)           \
-{                                                  \
-  res = with {                                     \
-          ( . <= iv <= . ) : val;                  \
-        } : genarray( shp, val );                  \
-  return( res);                                    \
+#define GENARRAY( sactyp, postfix, zval, oval, ctyp) \
+inline                                               \
+sactyp[*] genarray( int[.] shp, sactyp[*] val)       \
+{                                                    \
+  res = with {                                       \
+          ( . <= iv <= . ) : val;                    \
+        } : genarray( shp, val );                    \
+  return( res);                                      \
 }
 
-#define MODARRAY_AxVxS( typ, postfix, zval, oval)  \
-inline                                             \
-typ[*] modarray( typ[*] array, int[.] v, typ[] val)\
-{                                                  \
-  return( _modarray_AxVxS_( array, v, val));       \
+#define MODARRAY_AxVxS( sactyp, postfix, zval, oval, ctyp)  \
+inline                                                      \
+sactyp[*] modarray( sactyp[*] array, int[.] v, sactyp[] val)\
+{                                                           \
+  return( _modarray_AxVxS_( array, v, val));                \
 }
 
-#define MODARRAY_AxVxA( typ, postfix, zval, oval)   \
-inline                                              \
-typ[*] modarray( typ[*] array, int[.] v, typ[+] val)\
-{                                                   \
-  res = with {                                      \
-          ( v <= iv <= v ) : val;                   \
-        } : modarray( array );                      \
-  return( res);                                     \
+#define MODARRAY_AxVxA( sactyp, postfix, zval, oval, ctyp)   \
+inline                                                       \
+sactyp[*] modarray( sactyp[*] array, int[.] v, sactyp[+] val)\
+{                                                            \
+  res = with {                                               \
+          ( v <= iv <= v ) : val;                            \
+        } : modarray( array );                               \
+  return( res);                                              \
 }
 
-#define MODARRAY_AxSxX( typ, postfix, zval, oval)  \
-inline                                             \
-typ[*] modarray( typ[*] array, int v, typ[*] val)  \
-{                                                  \
-  return( modarray( array, [v], val));             \
+#define MODARRAY_AxSxX( sactyp, postfix, zval, oval, ctyp)  \
+inline                                                      \
+sactyp[*] modarray( sactyp[*] array, int v, sactyp[*] val)  \
+{                                                           \
+  return( modarray( array, [v], val));                      \
 }
 
 
 
-#define MODARRAY( typ, postfix, zval, oval)  \
-  MODARRAY_AxVxS( typ, postfix, zval, oval)  \
-  MODARRAY_AxSxX( typ, postfix, zval, oval)  \
-  MODARRAY_AxVxA( typ, postfix, zval, oval)
+#define MODARRAY( sactyp, postfix, zval, oval, ctyp)  \
+  MODARRAY_AxVxS( sactyp, postfix, zval, oval, ctyp)  \
+  MODARRAY_AxSxX( sactyp, postfix, zval, oval, ctyp)  \
+  MODARRAY_AxVxA( sactyp, postfix, zval, oval, ctyp)
 
 BUILT_IN( GENARRAY)
 BUILT_IN( MODARRAY)
@@ -248,3 +248,4 @@ int[*] iota( int[.] shp)
         } : genarray( shp, _mul_SxV_( 0, shp));
   return( res);
 }
+

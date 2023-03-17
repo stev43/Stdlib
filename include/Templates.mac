@@ -22,7 +22,7 @@
   *
   * ~~~~
   *  #define BUILT_IN ( fun)
-  *    fun( type, postfix specifier, zero/false, one/true)
+  *    fun( sactype, postfix specifier, zero/false, one/true, ctype)
   *    ...
   * ~~~~
   *
@@ -34,25 +34,25 @@
 
 #ifdef FULLTYPES
 
-#define SIGNED_INT_NUM( fun)    \
-fun( byte, b, 0b, 1b)           \
-fun( short, s, 0s, 1s)          \
-fun( int, i, 0i, 1i)            \
-fun( long, l, 0l, 1l)           \
-fun( longlong, ll, 0ll, 1ll)
+#define SIGNED_INT_NUM( fun)           \
+fun( byte, b, 0b, 1b, byte)            \
+fun( short, s, 0s, 1s, short)          \
+fun( int, i, 0i, 1i, int)              \
+fun( long, l, 0l, 1l, long)            \
+fun( longlong, ll, 0ll, 1ll, longlong)
 
-#define UNSIGNED_INT_NUM( fun)  \
-fun( ubyte, ub, 0ub, 1ub)       \
-fun( ushort, us, 0us, 1us)      \
-fun( uint, ui, 0ui, 1ui)        \
-fun( ulong, ul, 0ul, 1ul)       \
-fun( ulonglong, ull, 0ull, 1ull)
+#define UNSIGNED_INT_NUM( fun)              \
+fun( ubyte, ub, 0ub, 1ub, ubyte)            \
+fun( ushort, us, 0us, 1us, ushort)          \
+fun( uint, ui, 0ui, 1ui, uint)              \
+fun( ulong, ul, 0ul, 1ul, ulong)            \
+fun( ulonglong, ull, 0ull, 1ull, ulonglong)
 
 #else
 
 #define SIGNED_INT_NUM( fun)    \
-fun( int, i, 0i, 1i)            \
-fun( long, l, 0l, 1l)
+fun( int, i, 0i, 1i, int)       \
+fun( long, l, 0l, 1l, long)
 
 #define UNSIGNED_INT_NUM( fun)
 
@@ -62,18 +62,17 @@ fun( long, l, 0l, 1l)
 SIGNED_INT_NUM( fun)            \
 UNSIGNED_INT_NUM( fun)            
 
+#define REAL_NUM( fun)                  \
+fun( float8, f8, 0f8, 1f8, float)       \
+fun( float16, f16, 0f16, 1f16, float16) \
+fun( float, f, 0f, 1f, float)           \
+fun( double, d, 0d, 1d, double)
 
-#define REAL_NUM( fun)          \
-fun( float8, f8, 0f8, 1f8)      \
-fun( float16, f16, 0f16, 1f16)  \
-fun( float, f, 0f, 1f)          \
-fun( double, d, 0d, 1d)
+#define CHAR( fun)	                         \
+fun( char, /* no postfix */, ' ', ' ', char)
 
-#define CHAR( fun)	            \
-fun( char, /* no postfix */, ' ', ' ')
-
-#define BOOL( fun)              \
-fun( bool, /* no postfix */, false, true)
+#define BOOL( fun)                              \
+fun( bool, /* no postfix */, false, true, bool)
 
 #define NUM( fun)               \
 INT_NUM( fun)                   \

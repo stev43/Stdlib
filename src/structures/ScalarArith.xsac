@@ -12,11 +12,11 @@ export all;
  *
  ******************************************************************************/
 
-#define ZERO( type, postfix, zval, oval) \
-inline                                   \
-type zero( type[*] A)                    \
-{                                        \
-  return( zval);                         \
+#define ZERO( sactype, postfix, zval, oval, ctype) \
+inline                                             \
+sactype zero( sactype[*] A)                        \
+{                                                  \
+  return( zval);                                   \
 }
 
 BUILT_IN( ZERO)
@@ -29,11 +29,11 @@ BUILT_IN( ZERO)
  *
  ******************************************************************************/
 
-#define ONE( type, postfix, zval, oval) \
-inline                                  \
-type one( type[*] A)                    \
-{                                       \
-  return( oval);                        \
+#define ONE( sactype, postfix, zval, oval, ctype) \
+inline                                            \
+sactype one( sactype[*] A)                        \
+{                                                 \
+  return( oval);                                  \
 }
 
 BUILT_IN( ONE)
@@ -75,18 +75,18 @@ a name(a A)                           \
  *
  ******************************************************************************/
 
-#define ARI_OPS_S( type, postfix, zval, oval) \
-MAP_ARI_OPS( SxS, type)
+#define ARI_OPS_S( sactype, postfix, zval, oval, ctype) \
+MAP_ARI_OPS( SxS, sactype)
 
 NUM(  ARI_OPS_S)
 
 //------------------------------------------------------------------------------
 
-#define ABS_OP_S( type, postfix, zval, oval) \
-MAP_ABS_OP( SxS, type)
+#define ABS_OP_S( sactype, postfix, zval, oval, ctype) \
+MAP_ABS_OP( SxS, sactype)
 
-#define ABS_NOOP_S( type, postfix, zval, oval) \
-MAP_ABS_NOOP( SxS, type)
+#define ABS_NOOP_S( sactype, postfix, zval, oval, ctype) \
+MAP_ABS_NOOP( SxS, sactype)
 
 /* _abs_ works on all numbers but is noop on unsigned ones */
 SIGNED_NUM(  ABS_OP_S)
@@ -94,23 +94,23 @@ UNSIGNED_INT_NUM(  ABS_NOOP_S)
 
 //------------------------------------------------------------------------------
 
-#define NEG_OP_S( type, postfix, zval, oval) \
-MAP_NEG_OP( SxS, type)
+#define NEG_OP_S( sactype, postfix, zval, oval, ctype) \
+MAP_NEG_OP( SxS, sactype)
 
 /* _neg_ only works on signed integers and reals */
 SIGNED_NUM(  NEG_OP_S)
 
 //------------------------------------------------------------------------------
 
-#define ANA_OPS_S( type, postfix, zval, oval) \
-MAP_ANA_OPS( S, type)
+#define ANA_OPS_S( sactype, postfix, zval, oval, ctype) \
+MAP_ANA_OPS( S, sactype)
 
 NUM(   ANA_OPS_S)
 
 //------------------------------------------------------------------------------
 
-#define INT_OPS_S( type, postfix, zval, oval) \
-MAP_INT_OPS( SxS, type)
+#define INT_OPS_S( sactype, postfix, zval, oval, ctype) \
+MAP_INT_OPS( SxS, sactype)
 
 /* _mod_SxS_ only supports whole numbers */
 INT_NUM(  INT_OPS_S)
@@ -121,8 +121,8 @@ INT_NUM(  INT_OPS_S)
  *
  ******************************************************************************/
 
-#define REL_OPS_S( type, postfix, zero, one) \
-MAP_REL_OPS( SxS, type)
+#define REL_OPS_S( sactype, postfix, zero, one, ctype) \
+MAP_REL_OPS( SxS, sactype)
 
 BUILT_IN(  REL_OPS_S)
 
@@ -142,13 +142,13 @@ MAP_LOG_OPS( SxS)
  *
  ******************************************************************************/
 
-#define BOOL_CONV_OP_S(  type, postfix, zero, one) \
-MAP_BOOL_CONV_OP( SxS, type)
+#define BOOL_CONV_OP_S(  sactype, postfix, zero, one, ctype) \
+MAP_BOOL_CONV_OP( SxS, sactype)
 NUM( BOOL_CONV_OP_S)
 BOOL( BOOL_CONV_OP_S)
 
-#define NUM_CONV_OPS_S( type, postfix, zero, one) \
-MAP_NUM_CONV_OPS( SxS, type)
+#define NUM_CONV_OPS_S( sactype, postfix, zero, one, ctype) \
+MAP_NUM_CONV_OPS( SxS, sactype)
 
 BUILT_IN( NUM_CONV_OPS_S)
 
