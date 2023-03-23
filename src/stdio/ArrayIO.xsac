@@ -110,19 +110,19 @@ inline void print(sactype[+] arr)                                       \
                                                                         \
                                                                         \
                                                                         \
-inline void fprint(File &stream, string fmt, sactypr[+] arr)            \
+inline void fprint(File &stream, string fmt, sactype[+] arr)            \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void fprint(TermFile &stream, string fmt, sactyp[+] arr)         \
+inline void fprint(TermFile &stream, string fmt, sactype[+] arr)         \
 {                                                                       \
   printarray(stream, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \
 }                                                                       \
                                                                         \
-inline void print(string fmt, sactyp[+] arr)                            \
+inline void print(string fmt, sactype[+] arr)                            \
 {                                                                       \
   printarray(stdout, fmt, dim(arr), shape(arr), arr,                    \
              _isDist_A_(arr), _offs_A_(arr), _firstElems_A_(arr));      \

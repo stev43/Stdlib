@@ -548,7 +548,7 @@ sactype[*] where( bool[*] p, sactype A, sactype[+] B)    \
 
 #define WHERE_SxS( sactype, postfix, zval, oval, ctype)  \
 inline                                                   \
-sactype[*] where( bool[*] p, sactype A, asctype B)       \
+sactype[*] where( bool[*] p, sactype A, sactype B)       \
 {                                                        \
   res = with {                                           \
           ( . <= iv <= . )                               \
@@ -584,12 +584,12 @@ type name( type[*] arr_a)                                           \
   return( res);                                                     \
 }
 
-#define SUM( sactype, postfix, zval, oval, ctype) REDUCE( sum, type, +, zval)
-#define PROD( sactype, postfix, zval, oval, ctype) REDUCE( prod, type, *, oval)
+#define SUM( sactype, postfix, zval, oval, ctype) REDUCE( sum, sactype, +, zval)
+#define PROD( sactype, postfix, zval, oval, ctype) REDUCE( prod, sactype, *, oval)
 #define ALL REDUCE( all, bool, &, true)
 #define ANY REDUCE( any, bool, |, false)
-#define MAXVAL( sactype, postfix, zval, oval, ctype) REDUCE( maxval, type, max, min##type())
-#define MINVAL( sactype, postfix, zval, oval, ctype) REDUCE( minval, type, min, max##type())
+#define MAXVAL( sactype, postfix, zval, oval, ctype) REDUCE( maxval, sactype, max, min##sactype())
+#define MINVAL( sactype, postfix, zval, oval, ctype) REDUCE( minval, sactype, min, max##sactype())
 
 NUM( SUM)
 NUM( PROD)
@@ -608,19 +608,19 @@ bool match( sactype arr_a, sactype arr_b)		                            \
 }									                                                      \
 									                                                      \
 inline						                                                      \
-bool match( sactype[+] arr_a, type arr_b)					                      \
+bool match( sactype[+] arr_a, sactype arr_b)					                  \
 {									                                                      \
  return(false);								                                          \
 }									                                                      \
 									                                                      \
 inline									                                                \
-bool match( type arr_a, type[+] arr_b)					                        \
+bool match( sactype arr_a, sactype[+] arr_b)					                  \
 {									                                                      \
  return( false);							                                          \
 }									                                                      \
 									                                                      \
 inline									                                                \
-bool match( type[+] arr_a, type[+] arr_b)					                      \
+bool match( sactype[+] arr_a, sactype[+] arr_b)					                \
 {									                                                      \
  if ((_dim_A_( arr_a) == _dim_A_( arr_b)) && 				                    \
 	(all(_eq_VxV_(_shape_A_(arr_a), _shape_A_(arr_b))))){		              \
@@ -681,7 +681,7 @@ sactype[.] mask( bool p, sactype[.] A, sactype[.] B)                      \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxSxS( sactype, postfix, zval, oval)                         \
+#define MASK_VxSxS( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
 sactype[.] mask( bool[.] p, sactype A, sactype B)                         \
 {                                                                         \
@@ -697,7 +697,7 @@ sactype[.] mask( bool[.] p, sactype A, sactype[.] B)                      \
   return( res);                                                           \
 }                                                                         \
 
-#define MASK_VxVxS( sactype, postfix, zval, oval)                         \
+#define MASK_VxVxS( sactype, postfix, zval, oval, ctype)                  \
 inline                                                                    \
 sactype[.] mask( bool[.] p, sactype[.] A, sactype B)                      \
 {                                                                         \

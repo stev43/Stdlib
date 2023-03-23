@@ -164,14 +164,6 @@ UNSIGNED_INT_NUM(  ABS_NOOP_A)
 
 //------------------------------------------------------------------------------
 
-
-#define NEG_OP_A( sactype, postfix, zval, oval, ctype) \
-MAP_NEG_OP( AxA, sactype)                              \
-MAP_NEG_OP( SxA, sactype)                              \
-MAP_NEG_OP( AxS, sactype)
-
-SIGNED_NUM(  NEG_OP_A)
-
 #define NEG_OP_A( sactype, postfix, zval, oval, ctype) \
 MAP_NEG_OP( AxA, sactype)                              \
 MAP_NEG_OP( SxA, sactype)                              \
@@ -285,4 +277,3 @@ inline int[.] shprem( int[.] a, int[.] b)
   return( res);
 }
 
-  
