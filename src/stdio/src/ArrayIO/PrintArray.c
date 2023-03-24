@@ -29,6 +29,8 @@
 #define UINT       12
 #define ULONG      13
 #define ULONGLONG  14
+#define FLOAT8     15
+#define FLOAT16    16
 
 /*
  * Code generation macros
@@ -183,6 +185,12 @@ void PrintArr(FILE *stream, int typeflag, string format, int dim, int * shp, voi
       case ULONGLONG:
         fprintf(stream, format , ((unsigned long long *)a)[0]);
         break;
+      case FLOAT8:
+        fprintf(stream, format, (double)((float *)a)[0]);
+        break;
+      case FLOAT16:
+        fprintf(stream, format, (double)((float *)a)[0]);
+        break;
       case FLOAT:
         fprintf(stream, format, (double)((float *)a)[0]);
         break;
@@ -231,6 +239,8 @@ void PrintArr(FILE *stream, int typeflag, string format, int dim, int * shp, voi
             PRINT_CASE( UINT, unsigned int, unsigned int)
             PRINT_CASE( ULONG, unsigned long, unsigned long)
             PRINT_CASE( ULONGLONG, unsigned long long, unsigned long long)
+            PRINT_CASE( FLOAT8, float, double)
+            PRINT_CASE( FLOAT16, float, double)
             PRINT_CASE( FLOAT, float, double)
             PRINT_CASE( DOUBLE, double, double)
             PRINT_CASE( CHAR, char, char)  /* TODO: Isn't CHAR compiled to unsigned char? */
@@ -277,6 +287,10 @@ void PrintArr(FILE *stream, int typeflag, string format, int dim, int * shp, voi
 PRINT_FUNS( Bool, bool, BOOL, "%2i ")
 
 PRINT_FUNS( Double, double, DOUBLE, "%e ")
+
+PRINT_FUNS( Float8, float, FLOAT8, "%4f ")
+
+PRINT_FUNS( Float16, _Float16, FLOAT16, "%4f ")
 
 PRINT_FUNS( Float, float, FLOAT, "%4f ")
 
