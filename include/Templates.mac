@@ -63,8 +63,8 @@ SIGNED_INT_NUM( fun)            \
 UNSIGNED_INT_NUM( fun)            
 
 #define REAL_NUM( fun)                  \
-fun( float8, f8, 0f8, 1f8, float)       \
-fun( float16, f16, 0f16, 1f16, float16) \
+fun( float8, f8, 0f8, 1f8, _Float)       \
+fun( float16, f16, 0f16, 1f16, _Float16) \
 fun( float, f, 0f, 1f, float)           \
 fun( double, d, 0d, 1d, double)
 
