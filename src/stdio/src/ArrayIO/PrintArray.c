@@ -14,6 +14,13 @@
 #include "sac.h"
 #undef SAC_DO_DISTMEM
 
+//if fp
+#define LINK( sact, ct)
+LINK( float16, FP16_TYPE)
+#define SAC_type__Float16 42
+#define CPPMAPPER(x) SAC_type_##x
+#define SAC_impl_type(x) CPPMAPPER(x)
+
 
 #define INT        1
 #define FLOAT      2
@@ -189,7 +196,11 @@ void PrintArr(FILE *stream, int typeflag, string format, int dim, int * shp, voi
         fprintf(stream, format, (double)((float *)a)[0]);
         break;
       case FLOAT16:
+#if SAC_impl_type(FP16_TYPE) == SAC_type__Float16
+        fprintf(stream, format, (double)((FP16_TYPE *)a)[0]);
+#else
         fprintf(stream, format, (double)((float *)a)[0]);
+#endif
         break;
       case FLOAT:
         fprintf(stream, format, (double)((float *)a)[0]);
@@ -290,7 +301,11 @@ PRINT_FUNS( Double, double, DOUBLE, "%e ")
 
 PRINT_FUNS( Float8, float, FLOAT8, "%4f ")
 
-PRINT_FUNS( Float16, _Float16, FLOAT16, "%4f ")
+#if SAC_impl_type(FP16_TYPE) == SAC_type__Float16
+PRINT_FUNS( Float16, FP16_TYPE, FLOAT16, "%4f ")
+#else
+PRINT_FUNS( Float16, float, FLOAT, "%4f ")
+#endif
 
 PRINT_FUNS( Float, float, FLOAT, "%4f ")
 
